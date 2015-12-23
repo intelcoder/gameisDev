@@ -30,3 +30,20 @@ gulp.task('nodemon', function (cb) {
         }
     });
 });
+
+
+
+
+gulp.task('passwordService', function (cb) {
+    var started = false;
+    return nodemon({
+        script: './app/services/passwordService.js'
+    }).on('start', function () {
+        // to avoid nodemon being started multiple times
+        // thanks @matthisk
+        if (!started) {
+            cb();
+            started = true;
+        }
+    });
+});

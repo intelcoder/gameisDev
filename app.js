@@ -12,13 +12,12 @@ var app = express();
 
 console.log("gamies app start");
 //connect mongoose on app start
-mongoose.connect(mongooseURL,function(){
+mongoose.connect(mongooseURL,function(err){
+  if(err)throw Error(err);
   console.log("Mongoose Connected");
 });
 
-
 // view engine setup
-
 app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
