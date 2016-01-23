@@ -14,10 +14,10 @@ var userSchema = new Schema({
         type:String,
         required:true,
         max:50,
-        unique:true,
-        validate:/^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/
+        unique:true
     },
     password:{type:String,required:true,min:8,max:16},
+    access_token : {type:String}
 });
 
 userSchema.pre('save',function(next,done){

@@ -9,39 +9,27 @@ var express = require('express'),
     PasswordService = require(rootPath+'/app/services/passwordService');
 
 
-
 router.get('/',function(req,res){
    res.send("Register");
 });
-/*
-router.post('/isEmailExist',function(req,res){
-    if(req.body.email){
-        User.findOne({'email': req.body.email},'email',function(err,user){
-            if(err){
-                return new Error(err);
-            }
-            return res.json({
-                data:user
-            });
-        });
-    }
-});*/
+
 
 router.post('/',function(req,res,next){
     if(req.body==='undefined' && !req.body ){
         res.status(500).send("Invalid register");
     }
-    var newUser = new User({
+    User.create({
         email:req.body.email,
         password:req.body.password
-    });
-    newUser.save(function(err){
+    },function(err,user){
         if(err){
-            res.send(error);
+            return  res.status(500).send(err);
         }
-        res.send(newUser);
-    });
-    next();
+        return res.json({
+            data:user
+        })
+
+    })
 });
 
 

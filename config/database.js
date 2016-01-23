@@ -6,10 +6,8 @@ function getDatabaseUrl(dbName){
 
     var database = {
         mongoose: 'mongodb://localhost:27017/gamies',
-        mySQL:''
+        mysql:''
     };
-
-    console.log("getDatabaseUrl"+ database[dbName])
     if( database[dbName] !=='undefined')
         return  database[dbName];
     return null;

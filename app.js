@@ -10,7 +10,8 @@ var mongooseURL = require('./config/database').getDatabaseUrl('mongoose')
 var auth = require('./app/controllers/auth/index');
 var app = express();
 
-console.log("gamies app start");
+mongoose.Promise = require('bluebird');
+
 //connect mongoose on app start
 mongoose.connect(mongooseURL,function(err){
   if(err)throw Error(err);

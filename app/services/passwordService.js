@@ -5,8 +5,7 @@ var Promise = require('bluebird'),
     bcrypt = require('bcryptjs'),
     crypto = require('crypto'),
     bcryptGenSalt = Promise.promisify(bcrypt.genSalt),
-    bcryptGenHash = Promise.promisify(bcrypt.hash),
-    genRandomString = Promise.promisify(crypto.randomBytes);
+    bcryptGenHash = Promise.promisify(bcrypt.hash)
 
 
 
@@ -15,19 +14,17 @@ exports.getHash =function(passPhrase,salt){
 }
 
 exports.genRandomPassPhrase=function(passPhraseSize){
-        return genRandomString(passPhraseSize);
-    }
+    return new Promise(function(resolve){
+        var randomString = crypto.randomBytes(passPhraseSize).toString('base64').slice(0,passPhraseSize).replace(/\+/g, '0').replace(/\//g, '0');
+        if(!randomString)
+            return "";
+        return  resolve(randomString);
+    });
+}
 
 exports.getSalt=function(saltSize){
         return bcryptGenSalt(saltSize);
 }
-
-
-
-
-
-
-
 
 
 /*function PasswordService(){
@@ -56,5 +53,3 @@ test.getHash(12,32).then(function(hash){
     console.log(test);
 
 });*/
-
-
