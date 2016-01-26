@@ -8,7 +8,6 @@
   "dependencies": {
     "app-module-path": "^1.0.5",
     "app-root-path": "^1.0.0",
-    "bcrypt": "^0.8.5",
     "bcryptjs": "^2.3.0",
     "bluebird": "^3.0.6",
     "body-parser": "~1.13.2",
@@ -16,6 +15,7 @@
     "debug": "~2.2.0",
     "express": "~4.13.1",
     "express-jwt": "^3.3.0",
+    "helmet": "^1.1.0",
     "jade": "~1.11.0",
     "jsonwebtoken": "^5.4.1",
     "mongodb": "^2.0.49",
@@ -29,8 +29,8 @@
     "gulp": "^3.9.0",
     "gulp-jshint": "^2.0.0",
     "gulp-livereload": "^3.8.1",
-    "gulp-nodemon": "^2.0.4",
+    "gulp-nodemon": "^2.0.6",
     "jade": "^1.11.0",
-    "jshint": "^2.8.0"
+    "jshint": "^2.9.1"
   }
 }

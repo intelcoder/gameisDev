@@ -18,6 +18,7 @@ router.post('/',function(req,res,next){
     if(req.body==='undefined' && !req.body ){
         res.status(500).send("Invalid register");
     }
+    console.log(req.body);
     User.create({
         email:req.body.email,
         password:req.body.password
@@ -28,7 +29,6 @@ router.post('/',function(req,res,next){
         return res.json({
             data:user
         })
-
     })
 });
 

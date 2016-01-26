@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var mongooseURL = require('./config/database').getDatabaseUrl('mongoose')
 var auth = require('./app/controllers/auth/index');
+var management = require('./app/controllers/management/index');
 var app = express();
 
 mongoose.Promise = require('bluebird');
@@ -32,7 +33,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //responsible for login register auth
 app.use('/api/auth',auth);
-
+app.use('/api/management',management);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

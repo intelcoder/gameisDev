@@ -16,15 +16,17 @@ router.post('/',function(req,res,next){
     if(req.body==='undefined' && !req.body ){
         res.status(500).send("Invalid register");
     }
-    //find user from db
-
-    User.findOne({email : req.body.email},'email').then(function( user){
-        //if user is exist create jwt web token
-     /*   jwtSign({email:user.email},authConfig.getAuthElement('publicKey'),{ algorithm: 'HS256'}).then(function(token){
-            console.log(token);
-            res.send(token);
-        })*/
-
+    var newUser;
+    User.findOne({email : req.body.email},'email').then(function(user){
+        newUser = user;
+        return jwtSign({email:user.email},authConfig.getAuthElement('publicKey'),{ algorithm: 'HS256'});
+    }).then(function(token){
+        newUser.access_token = token;
+        newUser.save();
+        res.json({data:newUser});
+    }).catch(function(error){
+        console.log(error);
+        res.status(500).send(error);
     });
 });
 
